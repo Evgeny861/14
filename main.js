@@ -1,14 +1,14 @@
-function DomElement(selector, height, width, bg, fontSize){
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM готов!");
+
+    
+function DomElement(selector, height, width, bg, position){
     this.selector = selector;
     this.height = height;
     this.width = width;
     this.bg = bg;
-    this.fontSize  = fontSize;
+    this.position  = position;
 }
-
-let styleElem = new DomElement('.block', 100, 120, 'rgb(206, 32, 32)', 14);
-
-
 
 
 DomElement.prototype.createOfIf = function(){
@@ -26,13 +26,43 @@ DomElement.prototype.createOfIf = function(){
 
     el.style.background = this.bg;
 
-    el.style.fontSize = this.fontSize + 'px';
 
     el.innerHTML = ('Любой текст');
 
 };
+let countTop = 0,
+    countRight = 0;
+    
 
-let newElementOfClass = new DomElement('#cool', 300, 420, 'rgb(50, 55, 210)', 18);
+let black = new DomElement('.black', 100,100, '#000', 'absolute',);
+black.createOfIf();
+console.log(black);
+let blackSquare = document.querySelector('.black');
+blackSquare.style.position = 'absolute';
+blackSquare.style.bottom = countTop + 'px';
 
-newElementOfClass.createOfIf();
-styleElem.createOfIf();
+blackSquare.style.left = countRight + 'px';
+
+document.addEventListener('keydown', function(event) {
+
+    if(event.code === 'ArrowUp') {
+        countTop += 10;
+        blackSquare.style.bottom = countTop + 'px';
+    } 
+    else if (event.code === 'ArrowDown') {
+        countTop -= 10;
+        blackSquare.style.bottom = countTop + 'px';
+        console.log(blackSquare);
+    }
+    else if (event.code === 'ArrowLeft') {
+        countRight += 10;
+        blackSquare.style.left = countRight + 'px';
+        console.log(blackSquare);
+    }
+    else if (event.code === 'ArrowRight') {
+        countRight -= 10;
+        blackSquare.style.left = countRight + 'px';
+        console.log(blackSquare);
+    }
+  });
+});
